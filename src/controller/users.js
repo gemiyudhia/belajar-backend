@@ -29,8 +29,23 @@ const updateUser = (req, res) => {
   });
 };
 
+const deleteUser = (req, res) => {
+  const { id } = req.params;
+  console.log("DELETE user with id: ", id);
+  res.json({
+    message: "DELETE user success",
+    data: {
+      id: id,
+      name: "Gemi Yudhia",
+      email: "5tZVH@example.com",
+      address: "Aceh Barat",
+    },
+  });
+};
+
 module.exports = {
   getAllUsers,
   createNewUser,
   updateUser,
+  deleteUser,
 };
