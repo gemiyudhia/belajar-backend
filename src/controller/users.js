@@ -20,7 +20,17 @@ const createNewUser = (req, res) => {
   });
 };
 
+const updateUser = (req, res) => {
+  const { id } = req.params;
+  console.log("UPDATE user with id: ", id);
+  res.json({
+    message: "UPDATE user success",
+    data: req.body,
+  });
+};
+
 module.exports = {
   getAllUsers,
   createNewUser,
+  updateUser,
 };
