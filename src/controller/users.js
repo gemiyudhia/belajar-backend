@@ -33,13 +33,24 @@ const createNewUser = async (req, res) => {
   }
 };
 
-const updateUser = (req, res) => {
+const updateUser = async (req, res) => {
   const { id } = req.params;
-  console.log("UPDATE user with id: ", id);
-  res.json({
-    message: "UPDATE user success",
-    data: req.body,
-  });
+  const { body } = req;
+  try {
+    await UsersModel.updateUser(body, id);
+    res.json({
+      message: "UPDATE user success",
+      data: {
+        id: id,
+        ...body,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Server Error",
+      serverMessage: err,
+    });
+  }
 };
 
 const deleteUser = (req, res) => {
